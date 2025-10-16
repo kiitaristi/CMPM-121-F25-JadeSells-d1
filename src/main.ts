@@ -1,25 +1,27 @@
 import "./style.css";
 
 let counter: number = 0;
-const autoInc: number = 1;
+let autoInc: number = 0;
+let upgradeCount: number = 0;
+let upgradeCost: number = 10;
 
 document.body.innerHTML = `
 <div style="
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
   margin: 0;
-">
-  <div style="
-    margin: 0;
-    padding: 0;
-    ">
-    <h1 style="margin: 10;">CMPM 121 Incremental Game</h1>
-    <p style="margin: 4px 20;">Counter: <span id="counter">0</span></p>
-  </div>
+  text-align: center;
+  padding: 0;
+  ">
+  <h1 style="margin: 10;">The Baskin Bakery</h1>
+  <p style="margin: 4px 20;">Department Funds: <span id="counter">0</span></p>
+  <p style="margin: 4px 20;">Student Cake Engineers: <span id="upgradecount">0</span></p>
+</div>
 
-  <button id="button" style="
+<div style="
+  margin: 0;
+  text-align: center;
+  padding: 0;
+  ">
+  <button id="button1" style="
     border: none;
     color: white;
     text-align: center;
@@ -28,16 +30,49 @@ document.body.innerHTML = `
     cursor: pointer;
   ">🎂</button>
 </div>
+
+<div style="
+  margin: 0;
+  text-align: center;
+  padding: 0;
+  ">
+  <p style="margin: 20px 20;"><button id="button2" style="
+    border: solid;
+    color: #000000;
+    text-align: center;
+    font-size: 16px;
+    background-color: #adadadff;
+    cursor: pointer;
+  ">New cake engineer: <span id="upgradecost">0</span></button></p>
+</div>
 `;
 
 // Add click handler
 
-const button = document.getElementById("button")!;
+const button1 = document.getElementById("button1")!;
+const button2 = document.getElementById("button2")!;
 const counterElement = document.getElementById("counter")!;
+const upgradeCountElement = document.getElementById("upgradecount")!;
+const upgradeCostElement = document.getElementById("upgradecost")!;
 
-button.addEventListener("click", () => {
+upgradeCostElement.textContent = upgradeCost.toString();
+
+button1.addEventListener("click", () => {
   counter += 1;
   counterElement.textContent = counter.toFixed(4);
+});
+
+button2.addEventListener("click", () => {
+  if (counter >= upgradeCost) {
+    counter -= upgradeCost;
+    upgradeCount += 1;
+    autoInc += 1;
+    upgradeCost *= 1.5;
+    upgradeCost.toFixed(0);
+
+    upgradeCountElement.textContent = upgradeCount.toString();
+    upgradeCostElement.textContent = upgradeCost.toString();
+  }
 });
 
 /*
