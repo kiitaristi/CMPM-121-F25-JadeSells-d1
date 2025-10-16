@@ -37,9 +37,10 @@ const counterElement = document.getElementById("counter")!;
 
 button.addEventListener("click", () => {
   counter += 1;
-  counterElement.textContent = counter.toString();
+  counterElement.textContent = counter.toFixed(4);
 });
 
+/*
 function autoIncrement(): void {
   counter += autoInc;
   counterElement.innerHTML = counter.toString();
@@ -47,6 +48,24 @@ function autoIncrement(): void {
 
 // Call the function every 1000ms (1 second)
 setInterval(autoIncrement, 1000);
+*/
+
+let lastTime = performance.now();
+
+function update(currentTime: number): void {
+  const deltaTime = (currentTime - lastTime) / 1000; // convert ms to seconds
+  lastTime = currentTime;
+
+  // Increase value by fraction based on elapsed time
+  counter += autoInc * deltaTime;
+  counterElement.textContent = counter.toFixed(4);
+
+  // Continue next frame
+  requestAnimationFrame(update);
+}
+
+// Start loop
+requestAnimationFrame(update);
 
 // const interval = setInterval(autoIncrease, 1000);
 
