@@ -1,6 +1,7 @@
 import "./style.css";
 
 let counter: number = 0;
+const autoInc: number = 1;
 
 document.body.innerHTML = `
 <div style="
@@ -39,13 +40,20 @@ button.addEventListener("click", () => {
   counterElement.textContent = counter.toString();
 });
 
+function autoIncrement(): void {
+  counter += autoInc;
+  counterElement.innerHTML = counter.toString();
+}
+
+// Call the function every 1000ms (1 second)
+setInterval(autoIncrement, 1000);
+
 // const interval = setInterval(autoIncrease, 1000);
 
 // function autoIncrease(a, b) {
-//   
-//   
+//
+//
 // }
-
 
 //<p style="margin: 4px 0;">Auto Increase: <span id="autoIncrease">0.0</span></p>
 
