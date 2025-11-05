@@ -3,11 +3,11 @@ import "./style.css";
 let counter: number = 0;
 let autoInc: number = 0;
 let bakerCount: number = 0;
-const bakerCost: number = 10;
+let bakerCost: number = 10;
 let mixerCount: number = 0;
-const mixerCost: number = 100;
+let mixerCost: number = 100;
 let ovenCount: number = 0;
-const ovenCost: number = 1000;
+let ovenCost: number = 1000;
 
 document.body.innerHTML = `
 <div style="
@@ -97,7 +97,7 @@ bakerButton.addEventListener("click", () => {
     counter -= bakerCost;
     bakerCount += 1;
     autoInc += 1;
-    // bakerCost *= 1.5;
+    bakerCost *= 1.5;
 
     bakerCountElem.textContent = bakerCount.toString();
     bakerCostElem.textContent = bakerCost.toFixed(0);
@@ -109,7 +109,7 @@ mixerButton.addEventListener("click", () => {
     counter -= mixerCost;
     mixerCount += 1;
     autoInc += 2;
-    // mixerCost *= 1.5;
+    mixerCost *= 1.5;
 
     mixerCountElem.textContent = mixerCount.toString();
     mixerCostElem.textContent = mixerCost.toFixed(0);
@@ -121,7 +121,7 @@ ovenButton.addEventListener("click", () => {
     counter -= ovenCost;
     ovenCount += 1;
     autoInc += 50;
-    // ovenCost *= 1.5;
+    ovenCost *= 1.5;
 
     ovenCountElem.textContent = ovenCount.toString();
     ovenCostElem.textContent = ovenCost.toFixed(0);
