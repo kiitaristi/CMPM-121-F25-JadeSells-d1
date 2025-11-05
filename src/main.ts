@@ -100,7 +100,7 @@ bakerButton.addEventListener("click", () => {
     bakerCost *= 1.5;
 
     bakerCountElem.textContent = bakerCount.toString();
-    bakerCostElem.textContent = bakerCost.toFixed(0);
+    bakerCostElem.textContent = bakerCost.toFixed(2);
   }
 });
 
@@ -112,7 +112,7 @@ mixerButton.addEventListener("click", () => {
     mixerCost *= 1.5;
 
     mixerCountElem.textContent = mixerCount.toString();
-    mixerCostElem.textContent = mixerCost.toFixed(0);
+    mixerCostElem.textContent = mixerCost.toFixed(2);
   }
 });
 
@@ -124,7 +124,7 @@ ovenButton.addEventListener("click", () => {
     ovenCost *= 1.5;
 
     ovenCountElem.textContent = ovenCount.toString();
-    ovenCostElem.textContent = ovenCost.toFixed(0);
+    ovenCostElem.textContent = ovenCost.toFixed(2);
   }
 });
 
