@@ -2,8 +2,12 @@ import "./style.css";
 
 let counter: number = 0;
 let autoInc: number = 0;
-let upgradeCount: number = 0;
-let upgradeCost: number = 10;
+let bakerCount: number = 0;
+let bakerCost: number = 10;
+let mixerCount: number = 0;
+let mixerCost: number = 100;
+let ovenCount: number = 0;
+let ovenCost: number = 1000;
 
 document.body.innerHTML = `
 <div style="
@@ -13,7 +17,9 @@ document.body.innerHTML = `
   ">
   <h1 style="margin: 10;">The Baskin Bakery</h1>
   <p style="margin: 4px 20;">Department Funds: <span id="counter">0</span></p>
-  <p style="margin: 4px 20;">Student Cake Engineers: <span id="upgradecount">0</span></p>
+  <p style="margin: 4px 20;">Student Cake Engineers: <span id="bakerCount">0</span></p>
+  <p style="margin: 4px 20;">Stand Mixers Made as Student Projects: <span id="mixerCount">0</span></p>
+  <p style="margin: 4px 20;">Decades-Old Ovens: <span id="ovenCount">0</span></p>
 </div>
 
 <div style="
@@ -21,7 +27,7 @@ document.body.innerHTML = `
   text-align: center;
   padding: 0;
   ">
-  <button id="button1" style="
+  <button id="buttonCake" style="
     border: none;
     color: white;
     text-align: center;
@@ -36,54 +42,91 @@ document.body.innerHTML = `
   text-align: center;
   padding: 0;
   ">
-  <p style="margin: 20px 20;"><button id="button2" style="
+  <p style="margin: 20px 20;"><button id="buttonBaker" style="
     border: solid;
     color: #000000;
     text-align: center;
     font-size: 16px;
     background-color: #adadadff;
     cursor: pointer;
-  ">New cake engineer: <span id="upgradecost">0</span></button></p>
+  ">Cake engineer: <span id="bakerCost">0</span></button>
+  <button id="buttonMixer" style="
+    border: solid;
+    color: #000000;
+    text-align: center;
+    font-size: 16px;
+    background-color: #adadadff;
+    cursor: pointer;
+  ">Stand mixer: <span id="mixerCost">0</span></button></p>
+  <p style="margin: 20px 20;"><button id="buttonOven" style="
+    border: solid;
+    color: #000000;
+    text-align: center;
+    font-size: 16px;
+    background-color: #adadadff;
+    cursor: pointer;
+  ">Old oven: <span id="ovenCost">0</span></button></p>
 </div>
 `;
 
-// Add click handler
+const cakeButton = document.getElementById("buttonCake")!;
+const bakerButton = document.getElementById("buttonBaker")!;
+const mixerButton = document.getElementById("buttonMixer")!;
+const ovenButton = document.getElementById("buttonOven")!;
 
-const button1 = document.getElementById("button1")!;
-const button2 = document.getElementById("button2")!;
-const counterElement = document.getElementById("counter")!;
-const upgradeCountElement = document.getElementById("upgradecount")!;
-const upgradeCostElement = document.getElementById("upgradecost")!;
+const counterElem = document.getElementById("counter")!;
 
-upgradeCostElement.textContent = upgradeCost.toString();
+const bakerCountElem = document.getElementById("bakerCount")!;
+const bakerCostElem = document.getElementById("bakerCost")!;
+const mixerCountElem = document.getElementById("mixerCount")!;
+const mixerCostElem = document.getElementById("mixerCost")!;
+const ovenCountElem = document.getElementById("ovenCount")!;
+const ovenCostElem = document.getElementById("ovenCost")!;
 
-button1.addEventListener("click", () => {
+bakerCostElem.textContent = bakerCost.toString();
+mixerCostElem.textContent = mixerCost.toString();
+ovenCostElem.textContent = ovenCost.toString();
+
+cakeButton.addEventListener("click", () => {
   counter += 1;
-  counterElement.textContent = counter.toFixed(4);
+  counterElem.textContent = counter.toFixed(4);
 });
 
-button2.addEventListener("click", () => {
-  if (counter >= upgradeCost) {
-    counter -= upgradeCost;
-    upgradeCount += 1;
+bakerButton.addEventListener("click", () => {
+  if (counter >= bakerCost) {
+    counter -= bakerCost;
+    bakerCount += 1;
     autoInc += 1;
-    upgradeCost *= 1.5;
-    upgradeCost.toFixed(0);
+    // bakerCost *= 1.5;
 
-    upgradeCountElement.textContent = upgradeCount.toString();
-    upgradeCostElement.textContent = upgradeCost.toString();
+    bakerCountElem.textContent = bakerCount.toString();
+    bakerCostElem.textContent = bakerCost.toFixed(0);
   }
 });
 
-/*
-function autoIncrement(): void {
-  counter += autoInc;
-  counterElement.innerHTML = counter.toString();
-}
+mixerButton.addEventListener("click", () => {
+  if (counter >= mixerCost) {
+    counter -= mixerCost;
+    mixerCount += 1;
+    autoInc += 2;
+    // mixerCost *= 1.5;
 
-// Call the function every 1000ms (1 second)
-setInterval(autoIncrement, 1000);
-*/
+    mixerCountElem.textContent = mixerCount.toString();
+    mixerCostElem.textContent = mixerCost.toFixed(0);
+  }
+});
+
+ovenButton.addEventListener("click", () => {
+  if (counter >= ovenCost) {
+    counter -= ovenCost;
+    ovenCount += 1;
+    autoInc += 50;
+    // ovenCost *= 1.5;
+
+    ovenCountElem.textContent = ovenCount.toString();
+    ovenCostElem.textContent = ovenCost.toFixed(0);
+  }
+});
 
 let lastTime = performance.now();
 
@@ -93,7 +136,7 @@ function update(currentTime: number): void {
 
   // Increase value by fraction based on elapsed time
   counter += autoInc * deltaTime;
-  counterElement.textContent = counter.toFixed(4);
+  counterElem.textContent = counter.toFixed(4);
 
   // Continue next frame
   requestAnimationFrame(update);
@@ -101,26 +144,3 @@ function update(currentTime: number): void {
 
 // Start loop
 requestAnimationFrame(update);
-
-// const interval = setInterval(autoIncrease, 1000);
-
-// function autoIncrease(a, b) {
-//
-//
-// }
-
-//<p style="margin: 4px 0;">Auto Increase: <span id="autoIncrease">0.0</span></p>
-
-// let lastTime = performance.now();
-
-// function update(currentTime: number): void {
-//   const deltaTime = (currentTime - lastTime) / 1000;
-//   lastTime = currentTime;
-
-//   counter += autoInc * deltaTime;
-//   counterDisplay.innerHTML = counter.toFixed(4);
-
-//   requestAnimationFrame(update);
-// }
-
-// requestAnimationFrame(update);
