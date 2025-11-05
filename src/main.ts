@@ -3,11 +3,11 @@ import "./style.css";
 let counter: number = 0;
 let autoInc: number = 0;
 let bakerCount: number = 0;
-let bakerCost: number = 10;
+const bakerCost: number = 10;
 let mixerCount: number = 0;
-let mixerCost: number = 100;
+const mixerCost: number = 100;
 let ovenCount: number = 0;
-let ovenCost: number = 1000;
+const ovenCost: number = 1000;
 
 document.body.innerHTML = `
 <div style="
