@@ -1,9 +1,6 @@
 import "./style.css";
 
-// Rate of incrementation and counter to track clicks and auto incrementation
-let counter: number = 0;
-let autoIncrementRate: number = 0;
-
+// INTERFACE DEFINITION
 // Define interface to dynamically create and alter HTML elements at runtime
 interface Item {
   name: string;
@@ -63,6 +60,8 @@ const availableItems: Item[] = [
   },
 ];
 
+// END INTERFACE DEFINITION
+
 // Create background image to fit aesthetic
 document.body.style.backgroundImage =
   "url(https://www.shutterstock.com/image-photo/outside-view-bakery-glass-showcase-600nw-2207207873.jpg)"; // import image
@@ -114,10 +113,16 @@ document.body.innerHTML = `
 `;
 
 // UI CONSTRUCTION
-// Define variables for HTML elements to modify them in code later
-const cakeButton = document.getElementById("buttonCake")!;
+
+// Rate of incrementation and counter to track clicks and auto incrementation
+let counter: number = 0;
 const counterElem = document.getElementById("counter")!;
-const buttonContainerElem = document.getElementById("upgradebuttons")!;
+
+let autoIncrementRate: number = 0;
+
+// Define variables for HTML elements to modify them in code later
+
+// Define variable for descriptions container
 const descContainerElem = document.getElementById("descriptions")!;
 
 // Loop over the items in the interface defined above to dynamically create item
@@ -133,6 +138,9 @@ availableItems.forEach((item) => {
   desc.appendChild(descSpan);
   descContainerElem.appendChild(desc);
 });
+
+// Define variable for button container
+const buttonContainerElem = document.getElementById("upgradebuttons")!;
 
 // Loop over the items in the interface defined above to dynamically create buttons
 // with items, their current costs, and their click events, which will dynamically
@@ -153,6 +161,9 @@ availableItems.forEach((item, index) => {
   button.addEventListener("click", () => buyUpgrade(index));
   buttonContainerElem.appendChild(button);
 });
+
+// Define variable for main player button
+const cakeButton = document.getElementById("buttonCake")!;
 
 // Button click event for the main button the player interacts with
 cakeButton.addEventListener("click", () => {
