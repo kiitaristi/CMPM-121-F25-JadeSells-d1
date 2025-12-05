@@ -115,7 +115,7 @@ document.body.innerHTML = `
 // UI CONSTRUCTION
 
 // Rate of incrementation and counter to track clicks and auto incrementation
-let counter: number = 0;
+let cakeCount: number = 0;
 const counterElem = document.getElementById("counter")!;
 
 let autoIncrementRate: number = 0;
@@ -158,7 +158,7 @@ availableItems.forEach((item, index) => {
     cursor: pointer;
     `;
 
-  button.addEventListener("click", () => buyUpgrade(index));
+  button.addEventListener("click", () => buyItemUpgrade(index));
   buttonContainerElem.appendChild(button);
 });
 
@@ -167,19 +167,19 @@ const cakeButton = document.getElementById("buttonCake")!;
 
 // Button click event for the main button the player interacts with
 cakeButton.addEventListener("click", () => {
-  counter += 1;
-  counterElem.textContent = counter.toFixed(4);
+  cakeCount += 1;
+  counterElem.textContent = cakeCount.toFixed(4);
 });
 
 // END UI CONSTRUCTION
 
 // GAME STATE
 // Function that handles when an upgrade is bought upon clicking an upgrade button
-function buyUpgrade(index: number) {
+function buyItemUpgrade(index: number) {
   const item = availableItems[index];
-  if (counter >= item.cost) {
+  if (cakeCount >= item.cost) {
     autoIncrementRate += item.rate;
-    counter -= item.cost;
+    cakeCount -= item.cost;
     item.count++;
     item.cost *= 1.15;
     updateDisplay();
@@ -188,7 +188,7 @@ function buyUpgrade(index: number) {
 
 // Function that handles updates to content within HTML elements
 function updateDisplay() {
-  counterElem.textContent = counter.toFixed(4);
+  counterElem.textContent = cakeCount.toFixed(4);
 
   // Update buttons and descriptions
   const buttons = buttonContainerElem.querySelectorAll("button");
@@ -210,8 +210,8 @@ function update(currentTime: number): void {
   lastTime = currentTime;
 
   // Increase value by fraction based on elapsed time
-  counter += autoIncrementRate * deltaTime;
-  counterElem.textContent = counter.toFixed(4);
+  cakeCount += autoIncrementRate * deltaTime;
+  counterElem.textContent = cakeCount.toFixed(4);
 
   // Continue next frame
   requestAnimationFrame(update);
