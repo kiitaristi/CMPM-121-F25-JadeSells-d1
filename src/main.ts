@@ -9,9 +9,17 @@ let mixerCost: number = 100;
 let ovenCount: number = 0;
 let ovenCost: number = 1000;
 
+document.body.style.backgroundImage =
+  "url(https://www.shutterstock.com/image-photo/outside-view-bakery-glass-showcase-600nw-2207207873.jpg)"; // import image
+document.body.style.backgroundSize = "cover"; // make it cover the whole page
+document.body.style.backgroundPosition = "center"; // center alignment
+document.body.style.backgroundRepeat = "no-repeat"; // make sure the bg doesn't tile
+
 document.body.innerHTML = `
 <div style="
   margin: 0;
+  color: white;
+  font-weight: bold;
   text-align: center;
   padding: 0;
   ">
@@ -32,7 +40,7 @@ document.body.innerHTML = `
     color: white;
     text-align: center;
     font-size: 64px;
-    background-color: #ffffff;
+    background-color: transparent;
     cursor: pointer;
   ">🎂</button>
 </div>
@@ -47,7 +55,7 @@ document.body.innerHTML = `
     color: #000000;
     text-align: center;
     font-size: 16px;
-    background-color: #adadadff;
+    background-color: #dbb596ff;
     cursor: pointer;
   ">Cake engineer: <span id="bakerCost">0</span></button>
   <button id="buttonMixer" style="
@@ -55,7 +63,7 @@ document.body.innerHTML = `
     color: #000000;
     text-align: center;
     font-size: 16px;
-    background-color: #adadadff;
+    background-color: #dbb596ff;
     cursor: pointer;
   ">Stand mixer: <span id="mixerCost">0</span></button></p>
   <p style="margin: 20px 20;"><button id="buttonOven" style="
@@ -63,7 +71,7 @@ document.body.innerHTML = `
     color: #000000;
     text-align: center;
     font-size: 16px;
-    background-color: #adadadff;
+    background-color: #dbb596ff;
     cursor: pointer;
   ">Old oven: <span id="ovenCost">0</span></button></p>
 </div>
