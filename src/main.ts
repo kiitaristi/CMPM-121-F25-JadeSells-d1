@@ -1,8 +1,10 @@
 import "./style.css";
 
+// Rate of incrementation and counter to track clicks and auto incrementation
 let counter: number = 0;
-let autoInc: number = 0;
+let autoIncrementRate: number = 0;
 
+// Define interface to dynamically create and alter HTML elements at runtime
 interface Item {
   name: string;
   cost: number;
@@ -12,6 +14,7 @@ interface Item {
   id: string;
 }
 
+// Create interface items for later use in the code
 const availableItems: Item[] = [
   {
     name: "Cake Engineer",
@@ -60,12 +63,14 @@ const availableItems: Item[] = [
   },
 ];
 
+// Create background image to fit aesthetic
 document.body.style.backgroundImage =
   "url(https://www.shutterstock.com/image-photo/outside-view-bakery-glass-showcase-600nw-2207207873.jpg)"; // import image
 document.body.style.backgroundSize = "cover"; // make it cover the whole page
 document.body.style.backgroundPosition = "center"; // center alignment
 document.body.style.backgroundRepeat = "no-repeat"; // make sure the bg doesn't tile
 
+// Define HTML body to overlay over background image
 document.body.innerHTML = `
 <div style="
   margin: 0;
@@ -108,23 +113,29 @@ document.body.innerHTML = `
 </div>
 `;
 
+// Define variables for HTML elements to modify them in code later
 const cakeButton = document.getElementById("buttonCake")!;
 const counterElem = document.getElementById("counter")!;
 const buttonContainerElem = document.getElementById("upgradebuttons")!;
 const descContainerElem = document.getElementById("descriptions")!;
 
+// Loop over the items in the interface defined above to dynamically create item
+// descriptions and variables for how many there are of each to update later
 availableItems.forEach((item) => {
   const desc = document.createElement("p");
-  const descSpan = document.createElement("span");
+  desc.textContent = `${item.description}: `;
 
+  const descSpan = document.createElement("span");
   descSpan.id = item.id;
   descSpan.textContent = "0";
-  desc.textContent = `${item.description}: `;
 
   desc.appendChild(descSpan);
   descContainerElem.appendChild(desc);
 });
 
+// Loop over the items in the interface defined above to dynamically create buttons
+// with items, their current costs, and their click events, which will dynamically
+// update later in code
 availableItems.forEach((item, index) => {
   const button = document.createElement("button");
 
@@ -142,15 +153,17 @@ availableItems.forEach((item, index) => {
   buttonContainerElem.appendChild(button);
 });
 
+// Button click event for the main button the player interacts with
 cakeButton.addEventListener("click", () => {
   counter += 1;
   counterElem.textContent = counter.toFixed(4);
 });
 
+// Function that handles when an upgrade is bought upon clicking an upgrade button
 function buyUpgrade(index: number) {
   const item = availableItems[index];
   if (counter >= item.cost) {
-    autoInc += item.rate;
+    autoIncrementRate += item.rate;
     counter -= item.cost;
     item.count++;
     item.cost *= 1.15;
@@ -158,6 +171,7 @@ function buyUpgrade(index: number) {
   }
 }
 
+// Function that handles updates to content within HTML elements
 function updateDisplay() {
   counterElem.textContent = counter.toFixed(4);
 
@@ -172,12 +186,13 @@ function updateDisplay() {
 
 let lastTime = performance.now();
 
+// Update loop function that updates the game state and visuals during runtime
 function update(currentTime: number): void {
   const deltaTime = (currentTime - lastTime) / 1000; // convert ms to seconds
   lastTime = currentTime;
 
   // Increase value by fraction based on elapsed time
-  counter += autoInc * deltaTime;
+  counter += autoIncrementRate * deltaTime;
   counterElem.textContent = counter.toFixed(4);
 
   // Continue next frame
