@@ -18,7 +18,8 @@ const availableItems: Item[] = [
     cost: 10,
     rate: 0.1,
     count: 0,
-    description: "Student Cake Engineers",
+    description:
+      "Student Cake Engineers - Cs get degrees (of the burn variety)",
     id: "bakerCount",
   },
   {
@@ -26,7 +27,8 @@ const availableItems: Item[] = [
     cost: 100,
     rate: 2,
     count: 0,
-    description: "Stand Mixers Made as Student Projects",
+    description:
+      "Stand Mixers Made as Student Projects - They'll be a good resume pieces",
     id: "mixerCount",
   },
   {
@@ -34,8 +36,27 @@ const availableItems: Item[] = [
     cost: 1000,
     rate: 50,
     count: 0,
-    description: "Decades-Old Ovens",
+    description:
+      "Decades-Old Ovens - It's a miracle the department was able to even get these",
     id: "ovenCount",
+  },
+  {
+    name: "Teaching Assistants",
+    cost: 2000,
+    rate: 100,
+    count: 0,
+    description:
+      "Underpaid Teaching Assistants - Deserve more thanks than they get",
+    id: "assistantCount",
+  },
+  {
+    name: "Professor",
+    cost: 5000,
+    rate: 200,
+    count: 0,
+    description:
+      "Professor with a Food Engineering Doctorate - Working asynchronously, course material is shaky at best",
+    id: "professorCount",
   },
 ];
 
@@ -58,7 +79,7 @@ document.body.innerHTML = `
 </div>
 
 <div style="
-  margin: 0;
+  margin: 4px 20;
   text-align: center;
   padding: 0;
   ">
@@ -72,8 +93,15 @@ document.body.innerHTML = `
   ">🎂</button>
 </div>
 
+<p style="
+  margin: 4px 20;
+  text-align: center;
+  padding: 0;
+  ">
+</p>
+
 <div id="upgradebuttons" style="
-  margin: 0;
+  margin: 4px 20;
   text-align: center;
   padding: 0;
   ">
