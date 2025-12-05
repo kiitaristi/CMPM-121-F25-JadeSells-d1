@@ -113,6 +113,7 @@ document.body.innerHTML = `
 </div>
 `;
 
+// UI CONSTRUCTION
 // Define variables for HTML elements to modify them in code later
 const cakeButton = document.getElementById("buttonCake")!;
 const counterElem = document.getElementById("counter")!;
@@ -159,6 +160,9 @@ cakeButton.addEventListener("click", () => {
   counterElem.textContent = counter.toFixed(4);
 });
 
+// END UI CONSTRUCTION
+
+// GAME STATE
 // Function that handles when an upgrade is bought upon clicking an upgrade button
 function buyUpgrade(index: number) {
   const item = availableItems[index];
@@ -186,6 +190,9 @@ function updateDisplay() {
 
 let lastTime = performance.now();
 
+// END GAME STATE
+
+// UPDATE LOOP
 // Update loop function that updates the game state and visuals during runtime
 function update(currentTime: number): void {
   const deltaTime = (currentTime - lastTime) / 1000; // convert ms to seconds
@@ -201,3 +208,5 @@ function update(currentTime: number): void {
 
 // Start loop
 requestAnimationFrame(update);
+
+// END UPDATE LOOP
